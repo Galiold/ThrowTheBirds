@@ -51,12 +51,17 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 			player.GetComponent<Player>().MovePlayer(finalPos, bird);
 
 		player.GetComponent<Player>().Amounts(teta + Mathf.PI, power);
-		player.GetComponent<Player>().Predict();
+
+		if (power > 1f)
+			player.GetComponent<Player>().Sit = 1;
+		else
+			player.GetComponent<Player>().Sit = 0;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		joystick.GetComponent<Image>().rectTransform.position = joystickBackground.GetComponent<Image>().rectTransform.position;
+		player.GetComponent<Player>().Sit = 0;
 		player.GetComponent<Player>().Shoot(bird++);
 	}
 }

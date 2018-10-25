@@ -4,14 +4,14 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Planet.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Player.cs">
     <Files>
-      <File FileName="Assets\Script\Joystick.cs" Line="48" Column="106" />
-      <File FileName="Assets\Script\Player.cs" Line="59" Column="3" />
-      <File FileName="Assets\Script\Bird.cs" Line="23" Column="23" />
-      <File FileName="Assets\Script\Planet.cs" Line="41" Column="53" />
+      <File FileName="Assets\Script\Joystick.cs" Line="18" Column="50" />
+      <File FileName="Assets\Script\Player.cs" Line="20" Column="25" />
+      <File FileName="Assets\Script\DotsScript.cs" Line="23" Column="3" />
+      <File FileName="Assets\Script\Bird.cs" Line="31" Column="32" />
+      <File FileName="Assets\Script\Planet.cs" Line="33" Column="19" />
       <File FileName="Assets\Script\Pig.cs" Line="30" Column="45" />
-      <File FileName="Assets\Script\DotsScript.cs" Line="2" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />

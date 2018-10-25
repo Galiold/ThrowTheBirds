@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -11,7 +10,7 @@ public class Bird : MonoBehaviour
 	public Sprite damagedBird;
 	public Sprite flyBird;
 	public GameObject trace;
-	public enum birdSit { Flying, WaitingToThrow, Hit };
+	public enum birdSit { Flying, WaitingToThrow, Hit, OnSlingShot };
 	public birdSit sit;
 	private readonly string BIRD_PLANET = "BirdPlanet";
 	private readonly float EPSILON = 0.5f;
@@ -47,12 +46,10 @@ public class Bird : MonoBehaviour
 
 	private IEnumerator Emit()
 	{
-		//yield return new WaitForSeconds(0.25f);
 		while (sit == birdSit.Flying)
 		{
 			Instantiate(trace, transform.position, Quaternion.identity);
 			float next = Mathf.Max(0.25f, rb.velocity.magnitude / 100);
-			print(rb.velocity.magnitude / 100);
 			yield return new WaitForSeconds(next);
 		}
 	}
