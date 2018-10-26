@@ -187,7 +187,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 5376
-  m_ForceMagnitude: -20
+  m_ForceMagnitude: -30
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0
@@ -659,9 +659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9ad01dcbbe6c6439909221632108a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1458619132}
   joystickBackground: {fileID: 1880869350}
   gameController: {fileID: 1403326355}
+  player: {fileID: 1458619132}
 --- !u!1 &723263681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1326,7 @@ MonoBehaviour:
   - {fileID: 2010215907}
   Dots: {fileID: 1712027485756520, guid: dc83640a02c8dbf4fa30f95931a435f0, type: 2}
   moveSpeedCoef: 6
+  joystick: {fileID: 602640619}
 --- !u!4 &1458619134
 Transform:
   m_ObjectHideFlags: 0

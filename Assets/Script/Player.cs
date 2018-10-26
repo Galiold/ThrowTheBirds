@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 	public GameObject[] birds;
 	public GameObject Dots;
 	public float moveSpeedCoef;
+	public Joystick joystick;
 	private readonly float offset = 2.37f;
 	private float teta;
 	private float angle;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 	private float time;
 	private Vector3 pos;
 	private IEnumerator enumerator;
+	private int counter;
 
 	private void Awake()
 	{
@@ -41,16 +43,16 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void Shoot(int remainingbirds)
+	public void Shoot()
 	{
-		birds[remainingbirds].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
+		birds[counter++].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
 
-		if (remainingbirds + 1 < birds.Length)
+		if (counter < birds.Length)
 		{
 			IEnumerator coroutine;
-			coroutine = SetOnSlingShot(remainingbirds + 1);
+			coroutine = SetOnSlingShot(counter);
 			StartCoroutine(coroutine);
-			birds[remainingbirds + 1].GetComponent<Bird>().situation = Bird.birdSituation.OnSlingShot;
+			birds[counter].GetComponent<Bird>().situation = Bird.birdSituation.OnSlingShot;
 		}
 	}
 
@@ -60,11 +62,11 @@ public class Player : MonoBehaviour
 		birds[bird].transform.position = new Vector2(transform.position.x, transform.position.y + offset);
 	}
 
-	public void MovePlayer(Vector2 _pos, int currentBird)
+	public void MovePlayer(Vector2 _pos)
 	{
 		pos = new Vector3(_pos.x + transform.position.x, _pos.y + transform.position.y + offset,
-						  birds[currentBird].transform.position.z);
-		birds[currentBird].transform.position = pos;
+						  birds[counter].transform.position.z);
+		birds[counter].transform.position = pos;
 	}
 
 	public void Amounts(float _angle, float _power)
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
 	private void StartPrediction()
 	{
 		time += Time.deltaTime;
-		if (birds[0].GetComponent<Bird>().bird == Bird.birdSituation.OnSlingShot)
+		if (birds[counter].GetComponent<Bird>().bird == Bird.birdSituation.OnSlingShot)
 		{
 			for (int t = 0; t < predictDots.Length; t++)
 			{
@@ -98,6 +100,7 @@ public class Player : MonoBehaviour
 					+ v0y * (t + time)
 					+ pos.y;
 		return new Vector2(x, y);
+
 	}
 
 	private void StopPrediction()

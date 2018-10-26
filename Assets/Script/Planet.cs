@@ -25,7 +25,7 @@ public class Planet : MonoBehaviour
 	{
 		if (coll.gameObject.tag == DOT_TAG)
 		{
-			//coll.gameObject.GetComponent<DotsScript>().G = 0.05f;
+			coll.gameObject.GetComponent<DotsScript>().G = 0;
 		}
 
 	}

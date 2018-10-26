@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointerDownHandler
 {
-	public GameObject player;
 	public Image joystickBackground;
 	public GameController gameController;
+	public GameObject player;
 	private Image joystick;
 	private readonly float R = 3;
 	private float teta;
 	private float power;
-	private int bird;
 
 	private void Awake()
 	{
@@ -54,7 +53,7 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 		power = Mathf.Clamp(Vector2.Distance(mouseDragPosition, joystickBackground.transform.position), 0.1f, R);
 
 		if (eventData.dragging)
-			player.GetComponent<Player>().MovePlayer(finalPos, bird);
+			player.GetComponent<Player>().MovePlayer(finalPos);
 
 		player.GetComponent<Player>().Amounts(teta + Mathf.PI, power);
 
@@ -70,6 +69,6 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 			return;
 		joystick.GetComponent<Image>().rectTransform.position = joystickBackground.GetComponent<Image>().rectTransform.position;
 		player.GetComponent<Player>().Sit = 0;
-		player.GetComponent<Player>().Shoot(bird++);
+		player.GetComponent<Player>().Shoot();
 	}
 }

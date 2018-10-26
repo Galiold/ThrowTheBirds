@@ -11,7 +11,7 @@ public class Bird : MonoBehaviour
 	public Sprite damagedBird;
 	public Sprite flyBird;
 	public GameObject trace;
-	public enum birdSituation { WaitingToThrow, OnSlingShot, Hit, Flying };
+	public enum birdSituation { WaitingToThrow, OnSlingShot, Flying, Hit };
 	public birdSituation situation;
 	private List<GameObject> traceDots;
 	private readonly string BIRD_PLANET = "BirdPlanet";
@@ -22,8 +22,12 @@ public class Bird : MonoBehaviour
 	private CircleCollider2D cc;
 
 	/*
-	bird might fly for ever
-
+	bird might fly for ever solution not pretty
+	trajectory is not good
+	traces are not fine
+	planet gravity not nice
+	no rubber behind
+	no AI
 	*/
 
 	private void Awake()
@@ -48,25 +52,19 @@ public class Bird : MonoBehaviour
 		sp.sprite = flyBird;
 		situation = birdSituation.Flying;
 		traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
-		//InvokeRepeating("Emit", 0, 0.5f);
 		traceCoroutine = Emit();
 		StartCoroutine(traceCoroutine);
 	}
-
-	//private void Emit()
-	//{
-	//	if (Vector2.Distance(traceDots[traceDots.Count - 1].transform.position, transform.position) > 3)
-	//	{
-	//		traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
-	//	}
-	//}
-
+	private float kk;//make sure birds won't fly for ever
 	private IEnumerator Emit()
 	{
 		while (situation == birdSituation.Flying)
 		{
 			traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
 			float next = Mathf.Max(0.25f, rb.velocity.magnitude / 100);
+			kk += next;
+			if (kk > 20)
+				situation = birdSituation.Hit;
 			yield return new WaitForSeconds(next);
 		}
 		if (situation == birdSituation.Hit)
