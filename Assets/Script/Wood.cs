@@ -11,13 +11,11 @@ public class Wood : MonoBehaviour
 	private float damageHealth;
 	private SpriteRenderer sp;
 	private Rigidbody2D rb;
-	private BoxCollider2D bc;
 
 	private void Awake()
 	{
 		sp = GetComponent<SpriteRenderer>();
 		rb = GetComponent<Rigidbody2D>();
-		bc = GetComponent<BoxCollider2D>();
 		damageHealth = health - 10;
 	}
 
@@ -32,7 +30,7 @@ public class Wood : MonoBehaviour
 		{
 			float damage = coll.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude * 10 + rb.velocity.magnitude * 20;
 
-			health -= damageHealth;
+			health -= damage;
 
 			if (health < damageHealth)
 			{

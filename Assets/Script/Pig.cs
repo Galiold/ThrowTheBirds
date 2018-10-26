@@ -7,10 +7,7 @@ public class Pig : MonoBehaviour
 {
 	public Sprite damagedPig;
 	public float health;
-
 	private readonly string BIRD_TAG = "Bird";
-	private readonly string WOOD_TAG = "Wood";
-	private readonly string PLANET_TAG = "PigsPlanet";
 	private Rigidbody2D rb;
 	private SpriteRenderer sp;
 	private CircleCollider2D cc;

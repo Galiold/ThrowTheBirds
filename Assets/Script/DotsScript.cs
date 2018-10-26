@@ -18,11 +18,6 @@ public class DotsScript : MonoBehaviour
 		cc.isTrigger = true;
 	}
 
-	private void Update()
-	{
-
-	}
-
 	public float G
 	{
 		set
@@ -34,4 +29,5 @@ public class DotsScript : MonoBehaviour
 			return g;
 		}
 	}
+
 }

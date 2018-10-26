@@ -6,6 +6,7 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 {
 	public GameObject player;
 	public Image joystickBackground;
+	public GameController gameController;
 	private Image joystick;
 	private readonly float R = 3;
 	private float teta;
@@ -20,6 +21,8 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		if (!gameController.GameIsOn)
+			return;
 		Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
 		joystickBackground.GetComponent<Image>().rectTransform.position = new Vector3(pos.x, pos.y, -Camera.main.transform.position.z);
 		OnDrag(eventData);
@@ -27,6 +30,9 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 
 	public void OnDrag(PointerEventData eventData)
 	{
+		if (!gameController.GameIsOn)
+			return;
+
 		Vector2 mouseDragPosition = Camera.main.ScreenToWorldPoint(eventData.position);
 		Vector2 pos = mouseDragPosition - new Vector2(joystickBackground.transform.position.x, joystickBackground.transform.position.y);
 		Vector2 finalPos;
@@ -60,6 +66,8 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
+		if (!gameController.GameIsOn)
+			return;
 		joystick.GetComponent<Image>().rectTransform.position = joystickBackground.GetComponent<Image>().rectTransform.position;
 		player.GetComponent<Player>().Sit = 0;
 		player.GetComponent<Player>().Shoot(bird++);

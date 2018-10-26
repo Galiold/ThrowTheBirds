@@ -10,27 +10,23 @@ public class Player : MonoBehaviour
 	private float teta;
 	private float angle;
 	private float power;
-	private GameObject[] dots;
+	private GameObject[] predictDots;
 	private int sit;
-	private int counter = 14;
 	private float time;
 	private Vector3 pos;
-
-	/*
-	birds move on slingshot
-
-	*/
-
+	private IEnumerator enumerator;
 
 	private void Awake()
 	{
-		dots = new GameObject[15];
+		predictDots = new GameObject[15];
+
 		for (int i = 0; i < 15; i++)
 		{
-			dots[i] = Instantiate(Dots, transform.position, Quaternion.identity);
-			dots[i].SetActive(false);
+			predictDots[i] = Instantiate(Dots, transform.position, Quaternion.identity);
+			predictDots[i].SetActive(false);
 		}
-		birds[0].GetComponent<Bird>().sit = Bird.birdSit.OnSlingShot;
+
+		birds[0].GetComponent<Bird>().situation = Bird.birdSituation.OnSlingShot;
 	}
 
 	private void Update()
@@ -48,12 +44,13 @@ public class Player : MonoBehaviour
 	public void Shoot(int remainingbirds)
 	{
 		birds[remainingbirds].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
+
 		if (remainingbirds + 1 < birds.Length)
 		{
 			IEnumerator coroutine;
 			coroutine = SetOnSlingShot(remainingbirds + 1);
 			StartCoroutine(coroutine);
-			birds[remainingbirds + 1].GetComponent<Bird>().sit = Bird.birdSit.OnSlingShot;
+			birds[remainingbirds + 1].GetComponent<Bird>().situation = Bird.birdSituation.OnSlingShot;
 		}
 	}
 
@@ -61,7 +58,6 @@ public class Player : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2);
 		birds[bird].transform.position = new Vector2(transform.position.x, transform.position.y + offset);
-		birds[bird].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 
 	public void MovePlayer(Vector2 _pos, int currentBird)
@@ -80,12 +76,12 @@ public class Player : MonoBehaviour
 	private void StartPrediction()
 	{
 		time += Time.deltaTime;
-		if (birds[0].GetComponent<Bird>().bird == Bird.birdSit.WaitingToThrow)
+		if (birds[0].GetComponent<Bird>().bird == Bird.birdSituation.OnSlingShot)
 		{
-			for (int t = 0; t < dots.Length; t++)
+			for (int t = 0; t < predictDots.Length; t++)
 			{
-				dots[t].SetActive(true);
-				dots[t].transform.position = ProjectilePositionCalculator(t);
+				predictDots[t].SetActive(true);
+				predictDots[t].transform.position = ProjectilePositionCalculator(t);
 			}
 			if (time > 1)
 				time = 0;
@@ -98,7 +94,7 @@ public class Player : MonoBehaviour
 		float v0x = Mathf.Cos(angle) * power;
 		float x = v0x * (t + time) + pos.x;
 		float v0y = Mathf.Sin(angle) * power;
-		float y = -0.5f * dots[t].GetComponent<DotsScript>().G * Mathf.Pow(t + time, 2)
+		float y = -0.5f * predictDots[t].GetComponent<DotsScript>().G * Mathf.Pow(t + time, 2)
 					+ v0y * (t + time)
 					+ pos.y;
 		return new Vector2(x, y);
@@ -106,10 +102,9 @@ public class Player : MonoBehaviour
 
 	private void StopPrediction()
 	{
-
-		for (int t = 0; t < dots.Length; t++)
+		for (int t = 0; t < predictDots.Length; t++)
 		{
-			dots[t].SetActive(false);
+			predictDots[t].SetActive(false);
 		}
 	}
 

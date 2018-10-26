@@ -6,16 +6,12 @@ using UnityEngine.SceneManagement;
 public class Planet : MonoBehaviour
 {
 	private Rigidbody2D rb;
-	private PointEffector2D pe;
 	private readonly string DOT_TAG = "Dot";
 
 	private void Awake()
 	{
-		pe = GetComponent<PointEffector2D>();
 		rb = GetComponent<Rigidbody2D>();
-		rb.constraints = RigidbodyConstraints2D.FreezeAll;
-		rb.gravityScale = 0;
-		rb.useAutoMass = true;
+		rb.bodyType = RigidbodyType2D.Static;
 	}
 
 	private void Update()
@@ -31,6 +27,7 @@ public class Planet : MonoBehaviour
 		{
 			//coll.gameObject.GetComponent<DotsScript>().G = 0.05f;
 		}
+
 	}
 
 	private void OnTriggerExit2D(Collider2D coll)
