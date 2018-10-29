@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class GameController : MonoBehaviour
 {
+	public Text scoreText;
 	private float score;
 	private bool gameInOn;
 
@@ -20,8 +21,8 @@ public class GameController : MonoBehaviour
 
 		if (pigs.Length == 0)
 		{
-			print("Won");
 			score += birds.Length * 10000;
+			scoreText.text = "Score: " + Convert.ToString(score);
 		}
 		else
 		{

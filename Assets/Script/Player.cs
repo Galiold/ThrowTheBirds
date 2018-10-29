@@ -14,9 +14,10 @@ public class Player : MonoBehaviour
 	private GameObject[] predictDots;
 	private int sit;
 	private float time;
-	private Vector3 pos;
+	private Vector2 pos;
 	private IEnumerator enumerator;
 	private int counter;
+	private Planet[] planets;
 
 	private void Awake()
 	{
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
 		}
 
 		birds[0].GetComponent<Bird>().situation = Bird.birdSituation.OnSlingShot;
+
+		planets = FindObjectsOfType<Planet>();
 	}
 
 	private void Update()
@@ -93,14 +96,30 @@ public class Player : MonoBehaviour
 
 	private Vector2 ProjectilePositionCalculator(int t)
 	{
-		float v0x = Mathf.Cos(angle) * power;
-		float x = v0x * (t + time) + pos.x;
-		float v0y = Mathf.Sin(angle) * power;
-		float y = -0.5f * predictDots[t].GetComponent<DotsScript>().G * Mathf.Pow(t + time, 2)
-					+ v0y * (t + time)
-					+ pos.y;
-		return new Vector2(x, y);
+		Vector2 deltamovements = Vector2.zero;
 
+		foreach (Planet planet in planets)
+		{
+			Vector2 direction = (planet.transform.position - predictDots[t].transform.position);
+			float distance = direction.magnitude;
+			float F = 15 / Mathf.Pow(distance, 2);
+			Vector2 force = direction.normalized * F;
+			Vector2 powerVector = new Vector2(Mathf.Cos(angle) * power, Mathf.Sin(angle) * power);
+			deltamovements += powerVector * (t + time) + pos;
+			print(Vector2.Distance(deltamovements, planet.transform.position) + " " + t);
+			if (Vector2.Distance(deltamovements, planet.transform.position) < planet.GetComponent<CircleCollider2D>().radius * 3)
+			{
+				deltamovements += force * Mathf.Pow(t + time, 2);
+			}
+		}
+		return deltamovements;
+		//float v0x = Mathf.Cos(angle) * power;
+		//float x = v0x * (t + time) + pos.x;
+		//float v0y = Mathf.Sin(angle) * power;
+		//float y = -0.5f * predictDots[t].GetComponent<DotsScript>().G * Mathf.Pow(t + time, 2)
+		//			+ v0y * (t + time)
+		//			+ pos.y;
+		//return new Vector2(x, y);
 	}
 
 	private void StopPrediction()

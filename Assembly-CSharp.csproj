@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\Bird.cs" />
-     <Compile Include="Assets\Script\DotsScript.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\Joystick.cs" />
      <Compile Include="Assets\Script\Pig.cs" />

@@ -49,6 +49,7 @@ public class Bird : MonoBehaviour
 		float xpower = Mathf.Cos(angle);
 		float ypower = Mathf.Sin(angle);
 		rb.velocity = new Vector2(xpower * v0, ypower * v0);
+		//rb.AddForce(new Vector2(xpower, ypower) * 200, ForceMode2D.Force);
 		sp.sprite = flyBird;
 		situation = birdSituation.Flying;
 		traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
