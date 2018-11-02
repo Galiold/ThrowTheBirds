@@ -49,18 +49,20 @@ public class Bird : MonoBehaviour
 		float xpower = Mathf.Cos(angle);
 		float ypower = Mathf.Sin(angle);
 		rb.velocity = new Vector2(xpower * v0, ypower * v0);
-		//rb.AddForce(new Vector2(xpower, ypower) * 200, ForceMode2D.Force);
 		sp.sprite = flyBird;
 		situation = birdSituation.Flying;
 		traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
 		traceCoroutine = Emit();
 		StartCoroutine(traceCoroutine);
 	}
+
 	private float kk;//make sure birds won't fly for ever
 	private IEnumerator Emit()
 	{
 		while (situation == birdSituation.Flying)
 		{
+			transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+			transform.GetChild(0).GetComponent<ParticleSystem>().transform.eulerAngles = new Vector3(transform.eulerAngles.z - 180, 0);
 			traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
 			float next = Mathf.Max(0.25f, rb.velocity.magnitude / 100);
 			kk += next;
@@ -68,8 +70,10 @@ public class Bird : MonoBehaviour
 				situation = birdSituation.Hit;
 			yield return new WaitForSeconds(next);
 		}
+
 		if (situation == birdSituation.Hit)
 		{
+			Destroy(transform.GetChild(0).GetComponent<ParticleSystem>());
 			yield return new WaitForSeconds(5);
 			StopCoroutine(traceCoroutine);
 			TraceDotsDestroy();

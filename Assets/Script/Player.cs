@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
 	public void Shoot()
 	{
 		birds[counter++].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
-
 		frontSling.SetPosition(1, new Vector3(frontSling.gameObject.transform.position.x, frontSling.gameObject.transform.position.y + offset));
 		backSling.SetPosition(1, new Vector3(backSling.gameObject.transform.position.x, backSling.gameObject.transform.position.y + offset));
 
