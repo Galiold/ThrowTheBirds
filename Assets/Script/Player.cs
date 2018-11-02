@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 	public GameObject Dots;
 	public float moveSpeedCoef;
 	public Joystick joystick;
+	public LineRenderer frontSling;
+	public LineRenderer backSling;
 	private readonly float offset = 2.37f;
 	private float teta;
 	private float angle;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
 		if (sit == 1)
 		{
 			StartPrediction();
+			Slingshot();
 		}
 		else
 		{
@@ -49,6 +52,9 @@ public class Player : MonoBehaviour
 	public void Shoot()
 	{
 		birds[counter++].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
+
+		frontSling.SetPosition(1, new Vector3(frontSling.gameObject.transform.position.x, frontSling.gameObject.transform.position.y + offset));
+		backSling.SetPosition(1, new Vector3(backSling.gameObject.transform.position.x, backSling.gameObject.transform.position.y + offset));
 
 		if (counter < birds.Length)
 		{
@@ -94,6 +100,34 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	private void Slingshot()
+	{
+		Vector3[] frontSlingPosition = new Vector3[2];
+		Vector3[] backSlingPosition = new Vector3[2];
+
+		frontSlingPosition[0] = frontSling.transform.position + new Vector3(-1f, 2.8f);
+		//frontSlingPosition[1] = birds[counter].transform.position - new Vector3(1f, 0.25f);
+		frontSlingPosition[1] = birds[counter].transform.position;
+
+		backSlingPosition[0] = backSling.transform.position + new Vector3(1.13f, 2.8f);
+		//backSlingPosition[1] = birds[counter].transform.position - new Vector3(1f, 0.25f);
+		backSlingPosition[1] = birds[counter].transform.position;
+
+		backSling.SetPositions(backSlingPosition);
+		frontSling.SetPositions(frontSlingPosition);
+
+		frontSling.widthMultiplier = 1 / MapNumber(0.1f, 6, 0.5f, 1) - 0.6f;
+		backSling.widthMultiplier = frontSling.widthMultiplier;
+	}
+
+	/// <summary>
+	/// maps number x in range [a,b] to number y in range [c,d]
+	/// </summary>
+	private float MapNumber(float a, float b, float c, float d)
+	{
+		return (power - a) * ((d - c) / (b - 1)) + c;
+	}
+
 	private Vector2 ProjectilePositionCalculator(int t)
 	{
 		Vector2 deltamovements = Vector2.zero;
@@ -106,7 +140,8 @@ public class Player : MonoBehaviour
 			Vector2 force = direction.normalized * F;
 			Vector2 powerVector = new Vector2(Mathf.Cos(angle) * power, Mathf.Sin(angle) * power);
 			deltamovements += powerVector * (t + time) + pos;
-			print(Vector2.Distance(deltamovements, planet.transform.position) + " " + t);
+			//print(Vector2.Distance(deltamovements, planet.transform.position) + " " + t);
+
 			if (Vector2.Distance(deltamovements, planet.transform.position) < planet.GetComponent<CircleCollider2D>().radius * 3)
 			{
 				deltamovements += force * Mathf.Pow(t + time, 2);

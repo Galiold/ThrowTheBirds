@@ -8,7 +8,7 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 	public GameController gameController;
 	public GameObject player;
 	private Image joystick;
-	private readonly float R = 3;
+	private readonly float R = 6;
 	private float teta;
 	private float power;
 
@@ -40,17 +40,13 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
 		if (pos.magnitude > R)
 		{
 			finalPos = new Vector2(R * Mathf.Cos(teta), R * Mathf.Sin(teta));
-			joystick.GetComponent<Image>().rectTransform.position = new Vector3(finalPos.x + joystickBackground.transform.position.x,
-																				finalPos.y + joystickBackground.transform.position.y,
-																				-Camera.main.transform.position.z);
-
+			power = 6;
 		}
 		else
 		{
 			finalPos = new Vector2(pos.magnitude * Mathf.Cos(teta), pos.magnitude * Mathf.Sin(teta));
-			joystick.GetComponent<Image>().rectTransform.position = new Vector3(mouseDragPosition.x, mouseDragPosition.y, -Camera.main.transform.position.z);
+			power = pos.magnitude > 0.1 ? pos.magnitude : 0.1f;
 		}
-		power = Mathf.Clamp(Vector2.Distance(mouseDragPosition, joystickBackground.transform.position), 0.1f, R);
 
 		if (eventData.dragging)
 			player.GetComponent<Player>().MovePlayer(finalPos);
