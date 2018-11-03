@@ -21,8 +21,7 @@ public class GameController : MonoBehaviour
 
 		if (pigs.Length == 0)
 		{
-			score += birds.Length * 10000;
-			scoreText.text = "Score: " + Convert.ToString(score);
+			//winner
 		}
 		else
 		{

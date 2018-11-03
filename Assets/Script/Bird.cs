@@ -42,6 +42,15 @@ public class Bird : MonoBehaviour
 		rb.bodyType = RigidbodyType2D.Static;
 	}
 
+	private void Update()
+	{
+		if (situation == birdSituation.Flying)
+		{
+			transform.eulerAngles =
+						 new Vector3(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
+		}
+	}
+
 	public void Throw(float angle, float v0)
 	{
 		cc.isTrigger = false;
@@ -62,7 +71,7 @@ public class Bird : MonoBehaviour
 		while (situation == birdSituation.Flying)
 		{
 			transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-			transform.GetChild(0).GetComponent<ParticleSystem>().transform.eulerAngles = new Vector3(transform.eulerAngles.z - 180, 0);
+
 			traceDots.Add(Instantiate(trace, transform.position, Quaternion.identity));
 			float next = Mathf.Max(0.25f, rb.velocity.magnitude / 100);
 			kk += next;
