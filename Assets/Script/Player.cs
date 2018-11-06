@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 	{
 		if (sit == 1)
 		{
-			StartPrediction();
+			//StartPrediction();
 			Slingshot();
 		}
 		else
