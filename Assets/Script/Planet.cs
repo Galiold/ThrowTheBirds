@@ -7,6 +7,7 @@ public class Planet : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private readonly string DOT_TAG = "Dot";
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -18,8 +19,4 @@ public class Planet : MonoBehaviour
 		if (Input.GetKey(KeyCode.A))
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);	}
 
-	private void OnTriggerEnter2D(Collider2D coll)
-	{
-		print(coll.name);
-	}
 }

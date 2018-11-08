@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\Bird.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
+     <Compile Include="Assets\Script\GravityField.cs" />
      <Compile Include="Assets\Script\Joystick.cs" />
      <Compile Include="Assets\Script\Pig.cs" />
      <Compile Include="Assets\Script\Planet.cs" />
