@@ -9,7 +9,7 @@ public class GravityField : MonoBehaviour
 	private GameObject[] gravityField;
 	private bool gCheck;
 
-	void Awake()
+	private void Awake()
 	{
 		print(transform.GetComponentInParent<Transform>().localScale.x);
 		EPSILON = transform.GetComponentInParent<Transform>().localScale.x - 1.3f;
@@ -19,12 +19,11 @@ public class GravityField : MonoBehaviour
 		initialScale = gravityField[0].transform.localScale;
 	}
 
-	void Update()
+	private void Update()
 	{
 		gravityField[0].transform.localScale = new Vector2(gravityField[0].transform.localScale.x - Time.deltaTime / 5,
 														   gravityField[0].transform.localScale.y - Time.deltaTime / 5);
 
-		print(gravityField[0].transform.localScale.magnitude);
 		if (gravityField[0].transform.localScale.magnitude < 0.65f * initialScale.magnitude)
 		{
 			gCheck = true;
@@ -43,6 +42,7 @@ public class GravityField : MonoBehaviour
 			{
 				gravityField[1].transform.localScale = initialScale;
 			}
-		}	}
+		}
+	}
 
 }

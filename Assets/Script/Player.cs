@@ -51,9 +51,10 @@ public class Player : MonoBehaviour
 
 	public void Shoot()
 	{
-		birds[counter++].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
+		birds[counter].GetComponent<Bird>().Throw(angle, power * moveSpeedCoef);
 		frontSling.SetPosition(1, new Vector3(frontSling.gameObject.transform.position.x, frontSling.gameObject.transform.position.y + offset));
 		backSling.SetPosition(1, new Vector3(backSling.gameObject.transform.position.x, backSling.gameObject.transform.position.y + offset));
+		counter++;
 
 		if (counter < birds.Length)
 		{
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour
 
 	private IEnumerator SetOnSlingShot(int bird)
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(2.5f);
 		birds[bird].transform.position = new Vector2(transform.position.x, transform.position.y + offset);
 	}
 
@@ -114,8 +115,8 @@ public class Player : MonoBehaviour
 
 		backSling.SetPositions(backSlingPosition);
 		frontSling.SetPositions(frontSlingPosition);
-
-		frontSling.widthMultiplier = 1 / MapNumber(0.1f, 6, 0.5f, 1) - 0.6f;
+		float mappedNumber = MapNumber(0.1f, 6, 0.5f, 1);
+		frontSling.widthMultiplier = (1 / mappedNumber) - 0.6f;
 		backSling.widthMultiplier = frontSling.widthMultiplier;
 	}
 

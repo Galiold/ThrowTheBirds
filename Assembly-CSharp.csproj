@@ -53,6 +53,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kinect\DepthColliderDemo\Scripts\DepthImageViewer.cs" />
+     <Compile Include="Assets\Kinect\DepthColliderDemo\Scripts\EggMover.cs" />
+     <Compile Include="Assets\Kinect\DepthColliderDemo\Scripts\EggSpawner.cs" />
+     <Compile Include="Assets\Kinect\GesturesDemo\Scripts\GestureListener.cs" />
+     <Compile Include="Assets\Kinect\GesturesDemo\Scripts\PresentationScript.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\AvatarController.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\AvatarControllerClassic.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Cubeman\CubemanController.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\BoneOrientationsConstraint.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\BoneOrientationsFilter.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\ClippedLegsFilter.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\JointPositionsFilter.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\KinectHelper.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\SelfIntersectionConstraint.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\TimedLerp.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Filters\TrackingStateFilter.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\KinectGestures.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\KinectManager.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\KinectWrapper.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\FollowUserRotation.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\GetJointPositionDemo.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\LoadMainLevel.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\MouseControl.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\SetSceneAvatars.cs" />
+     <Compile Include="Assets\Kinect\KinectScripts\Samples\SimpleGestureListener.cs" />
+     <Compile Include="Assets\Kinect\OverlayDemo\Scripts\KinectOverlayer.cs" />
      <Compile Include="Assets\Script\Bird.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\GravityField.cs" />
