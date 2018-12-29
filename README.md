@@ -16,7 +16,7 @@ This project is tested in Unity 2018, conflicts in previous versions may occur
 How it works
 ------------
 The asset gives us the a set of enums, each pointing to the corresponding body of the player in front of the Kinect Camera.
-```
+```C#
 public enum NuiSkeletonPositionIndex : int
     {
         HipCenter = 0,
