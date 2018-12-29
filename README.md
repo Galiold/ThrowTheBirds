@@ -15,8 +15,8 @@ This project is tested in Unity 2018, conflicts in previous versions may occur
 
 How it works
 ------------
-The asset gives us the a set of enums, each pointing to the corresponding body of the player in front of the Kinect Camera.
-```C#
+The asset gives us the a set of enums, each pointing to the corresponding body of the player in front of the Kinect Camera. The code below is part of the script found in */Assets/Kinect/KinectScripts/KinectWrapper.cs*.
+```C# 
 public enum NuiSkeletonPositionIndex : int
     {
         HipCenter = 0,
@@ -51,4 +51,4 @@ Below is a demonstration of the result.
   <img src="/demonstration/AngryBirds-Kinnect.gif">
 </p>
 
-**Important Note:** This game portrays characters and envioronments of the game *Angry Birds Star Wars* by Rovio, with some changes in controllers. This project is only used 
+**Important Note:** This game portrays characters and environments of the game *Angry Birds Star Wars* by *Rovio*, with some changes in controllers. This project is only used for educational purposes, it is not, and will not be used in any other way. Sprites of the game were used only to facilitate the developmnent process.
