@@ -42,8 +42,13 @@ public enum NuiSkeletonPositionIndex : int
         Count = 20
     }
 ```
+In this project, we needed two anchor points for implementing the action of throwing a bird. One for the head of the slingshot, and another for simulating the hand stretching the rubber band to it.
+As for these anchors, we used the head and the left hand of the player; *Head* being the head of the slingshot, and *HandLeft* as the controller used for aiming the birds, and setting the throw power.
+We also used *HandRight* as the trigger for shooting the birds; when it enters a specific area in the right half of the game screen, the shoot command is sent.
+
+Below is a demonstration of the result.
 <p align="center">
   <img src="/demonstration/AngryBirds-Kinnect.gif">
 </p>
 
- of the game *Angry Birds Star Wars* with some changes in controllers 
+**Important Note:** This game portrays characters and envioronments of the game *Angry Birds Star Wars* by Rovio, with some changes in controllers. This project is only used 
