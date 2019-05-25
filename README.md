@@ -51,4 +51,4 @@ Below is a demonstration of the result.
   <img src="/demonstration/AngryBirds-Kinnect.gif">
 </p>
 
-**Important Note:** This game portrays characters and environments of the game *Angry Birds Star Wars* by *Rovio*, with some changes in controllers. This project is only used for educational purposes, it is not, and will not be used in any other way. Sprites of the game were used only to facilitate the developmnent process.
+**Important Note:** This game portrays characters and environments of the game *Angry Birds Star Wars* by *Rovio*, with some changes in controllers. This project is only used for educational purposes, it is not, and will not be used in any other way. Sprites of the game were are low quality assets found on the internet, used only to facilitate the developmnent process.
