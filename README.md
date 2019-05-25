@@ -1,4 +1,4 @@
-Interactive Angry Birds
+Throw The Birds
 =======================
 This project is a demonstrartion of the usage of Kinect Camera in controlling game mechanics.
 
