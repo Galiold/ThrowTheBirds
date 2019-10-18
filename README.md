@@ -47,8 +47,8 @@ As for these anchors, we used the head and the left hand of the player; *Head* b
 We also used *HandRight* as the trigger for shooting the birds; when it enters a specific area in the right half of the game screen, the shoot command is sent.
 
 Below is a demonstration of the result.
-<p align="center">
+<div align="center">
   <img src="/demonstration/AngryBirds-Kinnect.gif">
-</p>
+</div>
 
 **Important Note:** This game portrays characters and environments of the game *Angry Birds Star Wars* by *Rovio*, with some changes in controllers. This project is only used for educational purposes, it is not, and will not be used in any other way. Sprites of the game were are low quality assets found on the internet, used only to facilitate the developmnent process.
