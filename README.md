@@ -15,7 +15,7 @@ This project is tested in Unity 2018, conflicts in previous versions may occur
 
 How it works
 ------------
-The asset gives us the a set of enums, each pointing to the corresponding body part of the player in front of the Kinect Camera. The code below is part of the script found in */Assets/Kinect/KinectScripts/KinectWrapper.cs*.
+The asset gives us a set of enums, each pointing to the corresponding body part of the player in front of the Kinect Camera. The code below is part of the script found in *`/Assets/Kinect/KinectScripts/KinectWrapper.cs`*.
 ```C# 
 public enum NuiSkeletonPositionIndex : int
     {
